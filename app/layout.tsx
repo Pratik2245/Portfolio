@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "John Doe - Full Stack Developer Portfolio",
+  title: "Pratik Paithankar - Full Stack Developer Portfolio",
   description:
     "Passionate full-stack developer crafting digital experiences with modern technologies. Specializing in React, Next.js, Node.js, and cloud solutions.",
   keywords:
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://johndoe.dev",
-    title: "John Doe - Full Stack Developer Portfolio",
+    url: "https://pratik.dev",
+    title: "Pratik Paithankar - Full Stack Developer Portfolio",
     description:
       "Passionate full-stack developer crafting digital experiences with modern technologies.",
-    siteName: "John Doe Portfolio",
+    siteName: "Pratik Paithankar  Portfolio",
   },
   twitter: {
     card: "summary_large_image",
