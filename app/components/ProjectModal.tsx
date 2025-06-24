@@ -1,51 +1,66 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { X, Github, ExternalLink, Calendar, Users, Star, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { useState } from "react";
+import {
+  X,
+  Github,
+  ExternalLink,
+  Calendar,
+  Users,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 interface Project {
-  id: number
-  title: string
-  description: string
-  longDescription: string
-  image: string
-  images: string[]
-  technologies: string[]
-  category: string
-  github: string
-  live: string
-  featured: boolean
-  duration: string
-  team: string
-  challenges: string[]
-  features: string[]
-  results: string[]
+  id: number;
+  title: string;
+  description: string;
+  longDescription: string;
+  image: string;
+  images: string[];
+  technologies: string[];
+  category: string;
+  github: string;
+  live: string;
+  featured: boolean;
+  duration: string;
+  team: string;
+  challenges: string[];
+  features: string[];
+  results: string[];
 }
 
 interface ProjectModalProps {
-  project: Project | null
-  isOpen: boolean
-  onClose: () => void
+  project: Project | null;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+export default function ProjectModal({
+  project,
+  isOpen,
+  onClose,
+}: ProjectModalProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  if (!isOpen || !project) return null
+  if (!isOpen || !project) return null;
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % project.images.length)
-  }
+    setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+  };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length)
-  }
+    setCurrentImageIndex(
+      (prev) => (prev - 1 + project.images.length) % project.images.length
+    );
+  };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-      <div className="relative w-full max-w-6xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden border border-slate-700/50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm">
+      <div className="relative w-full max-w-6xl max-h-screen md:max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden border border-slate-700/50">
         {/* Close Button */}
         <Button
           variant="ghost"
@@ -57,11 +72,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
         </Button>
 
         {/* Modal Content */}
-        <div className="overflow-y-auto max-h-[90vh]">
+        <div className="overflow-y-auto overflow-x-hidden max-h-screen md:max-h-[90vh]">
           {/* Header Section */}
           <div className="relative">
-            {/* Image Gallery */}
-            <div className="relative h-80 md:h-96 overflow-hidden">
+            <div className="relative h-60 sm:h-72 md:h-96 overflow-hidden">
               <Image
                 src={project.images[currentImageIndex] || project.image}
                 alt={project.title}
@@ -69,7 +83,6 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 className="object-cover"
               />
 
-              {/* Image Navigation */}
               {project.images.length > 1 && (
                 <>
                   <Button
@@ -89,14 +102,15 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     <ChevronRight className="h-5 w-5" />
                   </Button>
 
-                  {/* Image Indicators */}
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                     {project.images.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
                         className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                          index === currentImageIndex ? "bg-purple-400" : "bg-white/50"
+                          index === currentImageIndex
+                            ? "bg-purple-400"
+                            : "bg-white/50"
                         }`}
                       />
                     ))}
@@ -104,14 +118,14 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 </>
               )}
 
-              {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
 
-              {/* Project Title & Category */}
               <div className="absolute bottom-6 left-6 right-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">{project.title}</h2>
+                <div className="flex flex-wrap items-center justify-between">
+                  <div className="mb-2 sm:mb-0">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
+                      {project.title}
+                    </h2>
                     <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-sm font-semibold">
                       {project.category}
                     </span>
@@ -128,16 +142,18 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           </div>
 
           {/* Content Section */}
-          <div className="p-8">
-            <div className="grid lg:grid-cols-3 gap-8">
+          <div className="p-4 sm:p-6 md:p-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-8">
-                {/* Project Overview */}
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Project Overview</h3>
-                  <p className="text-gray-300 leading-relaxed mb-6">{project.longDescription}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                    Project Overview
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed mb-6">
+                    {project.longDescription}
+                  </p>
 
-                  {/* Project Details */}
                   <div className="grid md:grid-cols-2 gap-4 mb-6">
                     <div className="flex items-center text-gray-400">
                       <Calendar className="h-5 w-5 mr-2 text-purple-400" />
@@ -149,8 +165,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-4">
+                  <div className="flex flex-wrap gap-4">
                     <Button
                       size="lg"
                       className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
@@ -171,9 +186,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   </div>
                 </div>
 
-                {/* Key Features */}
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Key Features</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                    Key Features
+                  </h3>
                   <div className="grid md:grid-cols-2 gap-3">
                     {project.features.map((feature, index) => (
                       <div key={index} className="flex items-start">
@@ -184,21 +200,26 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   </div>
                 </div>
 
-                {/* Challenges & Solutions */}
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Challenges & Solutions</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                    Challenges & Solutions
+                  </h3>
                   <div className="space-y-3">
                     {project.challenges.map((challenge, index) => (
-                      <div key={index} className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50">
+                      <div
+                        key={index}
+                        className="p-4 bg-slate-800/50 rounded-lg border border-slate-700/50"
+                      >
                         <p className="text-gray-300">{challenge}</p>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Results & Impact */}
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-4">Results & Impact</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">
+                    Results & Impact
+                  </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     {project.results.map((result, index) => (
                       <div
@@ -214,9 +235,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
 
               {/* Sidebar */}
               <div className="space-y-6">
-                {/* Technologies Used */}
                 <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-                  <h4 className="text-lg font-bold text-white mb-4">Technologies Used</h4>
+                  <h4 className="text-lg font-bold text-white mb-4">
+                    Technologies Used
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
                       <span
@@ -229,9 +251,10 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                   </div>
                 </div>
 
-                {/* Project Stats */}
                 <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-                  <h4 className="text-lg font-bold text-white mb-4">Project Stats</h4>
+                  <h4 className="text-lg font-bold text-white mb-4">
+                    Project Stats
+                  </h4>
                   <div className="space-y-3">
                     <div className="flex justify-between">
                       <span className="text-gray-400">Completion</span>
@@ -243,22 +266,34 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-400">Performance</span>
-                      <span className="text-blue-400 font-semibold">95/100</span>
+                      <span className="text-blue-400 font-semibold">
+                        95/100
+                      </span>
                     </div>
                   </div>
                 </div>
 
-                {/* Related Projects */}
                 <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50">
-                  <h4 className="text-lg font-bold text-white mb-4">Related Projects</h4>
+                  <h4 className="text-lg font-bold text-white mb-4">
+                    Related Projects
+                  </h4>
                   <div className="space-y-2">
-                    <a href="#" className="block text-purple-400 hover:text-purple-300 transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-purple-400 hover:text-purple-300"
+                    >
                       → Similar E-commerce Project
                     </a>
-                    <a href="#" className="block text-purple-400 hover:text-purple-300 transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-purple-400 hover:text-purple-300"
+                    >
                       → React Dashboard Template
                     </a>
-                    <a href="#" className="block text-purple-400 hover:text-purple-300 transition-colors duration-200">
+                    <a
+                      href="#"
+                      className="block text-purple-400 hover:text-purple-300"
+                    >
                       → Payment Integration Guide
                     </a>
                   </div>
@@ -269,5 +304,5 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
         </div>
       </div>
     </div>
-  )
+  );
 }

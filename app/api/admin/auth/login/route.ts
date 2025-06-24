@@ -2,7 +2,6 @@ import { type NextRequest, NextResponse } from "next/server";
 import { getDatabase } from "@/lib/mongodb";
 import { comparePassword, generateToken } from "@/lib/auth";
 import type { AdminUser } from "@/lib/models";
-import { log } from "console";
 
 export async function POST(request: NextRequest) {
   try {

@@ -50,41 +50,41 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 md:pt-24"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20 sm:pt-24"
     >
-      {/* Animated Background */}
+      {/* Background Glow */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-500"></div>
+        <div className="absolute top-1/4 left-1/4 w-48 sm:w-72 h-48 sm:h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 sm:w-80 h-60 sm:h-80 bg-blue-500/20 rounded-full blur-3xl animate-pulse delay-500" />
       </div>
 
+      {/* Main Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-6xl mx-auto mt-8 md:mt-12">
-          {/* 👇 Updated grid columns for wider right section */}
-          <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-center">
-            {/* Left Column - Content */}
-            <div className="order-2 lg:order-1">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-fade-in text-right lg:text-left">
+        <div className="max-w-6xl mx-auto mt-10 sm:mt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
+            {/* Content Section */}
+            <div className="text-center lg:text-left">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent animate-fade-in">
                 Pratik Paithankar
               </h1>
 
-              <div className="text-2xl md:text-3xl text-gray-300 mb-8 h-12 flex items-center justify-end lg:justify-start">
+              <div className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 h-12 flex items-center justify-center lg:justify-start">
                 <span className="mr-2">I'm a</span>
-                <span className="text-purple-400 font-semibold min-w-[300px] text-left">
+                <span className="text-purple-400 font-semibold min-w-[200px] sm:min-w-[300px] text-left">
                   {text}
                   <span className="animate-blink">|</span>
                 </span>
               </div>
 
-              <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl leading-relaxed animate-fade-in-up text-right lg:text-left lg:mx-0 ml-auto">
+              <p className="text-sm sm:text-lg text-gray-400 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed animate-fade-in-up">
                 Passionate developer crafting digital experiences with modern
                 technologies. I love turning complex problems into simple,
                 beautiful solutions.
               </p>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-end lg:justify-start mb-8">
+              {/* Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
@@ -100,15 +100,15 @@ export default function Hero() {
                 <a
                   href="/Resume_Pratik_Kishor_Paithankar.pdf"
                   download
-                  className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center gap-2 text-sm"
+                  className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 flex items-center gap-2 text-sm justify-center"
                 >
                   <Download className="h-5 w-5" />
                   Download CV
                 </a>
               </div>
 
-              {/* Social Links */}
-              <div className="flex justify-end lg:justify-start space-x-6 mb-8">
+              {/* Social Icons */}
+              <div className="flex justify-center lg:justify-start space-x-6 mb-8">
                 {[
                   {
                     icon: Github,
@@ -138,9 +138,9 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Right Column - Image */}
-            <div className="order-1 lg:order-2 flex justify-center lg:justify-end -mt-8">
-              <div className="w-80 h-79 lg:w-86 lg:h-86 rounded-full overflow-hidden border-4 border-purple-500 shadow-lg">
+            {/* Image Section */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-56 sm:w-72 h-56 sm:h-72 rounded-full overflow-hidden border-4 border-purple-500 shadow-lg">
                 <img
                   src="/pratik1.jpeg"
                   alt="Profile Image"
@@ -150,11 +150,12 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Scroll Indicator */}
+          {/* Scroll Down Icon */}
           <div className="text-center mt-12">
             <button
               onClick={scrollToAbout}
               className="animate-bounce text-gray-400 hover:text-purple-400 transition-colors duration-300"
+              aria-label="Scroll to About Section"
             >
               <ChevronDown className="h-8 w-8 mx-auto" />
             </button>
